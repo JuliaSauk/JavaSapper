@@ -12,7 +12,7 @@ public class Game {
     private GameState state;
 
 
-    public Game(int cols, int rows, int bombs) { //конструктор для размера
+    public Game(int cols, int rows, int bombs) { 
         Ranges.setSize(new Coordinate(cols, rows));
         bomb = new Bomb(bombs);
         flag = new Flag();
@@ -25,7 +25,7 @@ public class Game {
      state = GameState.PLAYED;
     }
 
-    public Box getBox(Coordinate coordinate) {//что необходимо изобразить в том или ином месте экрана
+    public Box getBox(Coordinate coordinate) {
         if (flag.get(coordinate) == Box.OPENED)
             return bomb.get(coordinate);
         else
@@ -33,7 +33,7 @@ public class Game {
     }
 
     public void pressLeftButtom(Coordinate coordinate) {
-        if (gameOver()) return; //если игра закончила - выходим
+        if (gameOver()) return;
         openBox(coordinate);
         checkWinner();
     }
@@ -52,7 +52,7 @@ public class Game {
                 switch (bomb.get(coordinate)) {
                     case ZERO: openBoxesAround(coordinate); return;
                     case BOMB: openBombs(coordinate); return;
-                        default: flag.setOpenedToBox(coordinate); return; //когда закрыто и находится только цифра
+                        default: flag.setOpenedToBox(coordinate); return; 
                 }
         }
     }
@@ -76,10 +76,10 @@ public class Game {
     }
 
     private void openBoxesAround(Coordinate coordinate) {
-        flag.setOpenedToBox(coordinate); //открываем текущую
+        flag.setOpenedToBox(coordinate); 
         for (Coordinate around : Ranges.getCoordsAround(coordinate)) {
             openBox(around);
-        } // перебираем вокруг
+        } 
     }
 
     public void pressRightButtom(Coordinate coordinate) {
